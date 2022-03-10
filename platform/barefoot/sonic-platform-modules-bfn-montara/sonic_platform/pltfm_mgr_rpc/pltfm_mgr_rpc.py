@@ -303,7 +303,7 @@ class Iface(object):
 
         """
         pass
-
+      
     def pltfm_mgr_chss_mgmt_bmc_ver_get(self):
         pass
 
@@ -1570,7 +1570,6 @@ class Client(Iface):
         if result.ouch is not None:
             raise result.ouch
         raise TApplicationException(TApplicationException.MISSING_RESULT, "pltfm_mgr_chss_mgmt_bmc_ver_get failed: unknown result")
-
 
 class Processor(Iface, TProcessor):
     def __init__(self, handler):
@@ -7612,10 +7611,7 @@ pltfm_mgr_sensor_info_get_result.thrift_spec = (
     (1, TType.STRUCT, 'ouch', [InvalidPltfmMgrOperation, None], None, ),  # 1
 )
 
-
 class pltfm_mgr_chss_mgmt_bmc_ver_get_args(object):
-
-
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
             iprot._fast_decode(self, iprot, [self.__class__, self.thrift_spec])
@@ -7651,10 +7647,10 @@ class pltfm_mgr_chss_mgmt_bmc_ver_get_args(object):
 
     def __ne__(self, other):
         return not (self == other)
+
 all_structs.append(pltfm_mgr_chss_mgmt_bmc_ver_get_args)
 pltfm_mgr_chss_mgmt_bmc_ver_get_args.thrift_spec = (
 )
-
 
 class pltfm_mgr_chss_mgmt_bmc_ver_get_result(object):
     """
@@ -7697,6 +7693,7 @@ class pltfm_mgr_chss_mgmt_bmc_ver_get_result(object):
         if oprot._fast_encode is not None and self.thrift_spec is not None:
             oprot.trans.write(oprot._fast_encode(self, [self.__class__, self.thrift_spec]))
             return
+          
         oprot.writeStructBegin('pltfm_mgr_chss_mgmt_bmc_ver_get_result')
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.STRING, 0)
@@ -7722,6 +7719,7 @@ class pltfm_mgr_chss_mgmt_bmc_ver_get_result(object):
 
     def __ne__(self, other):
         return not (self == other)
+      
 all_structs.append(pltfm_mgr_chss_mgmt_bmc_ver_get_result)
 pltfm_mgr_chss_mgmt_bmc_ver_get_result.thrift_spec = (
     (0, TType.STRING, 'success', 'UTF8', None, ),  # 0
