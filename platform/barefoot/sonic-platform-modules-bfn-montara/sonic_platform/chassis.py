@@ -124,6 +124,8 @@ class Chassis(ChassisBase):
                 "x86_64-accton_as9516_32d-r0",
                 "x86_64-accton_as9516bf_32d-r0",
                 "x86_64-accton_wedge100bf_32x-r0"
+                "x86_64-accton_davenport"
+                "x86_64-accton_stinson"
             ]
             if platform in exclude_cpu_port:
                 self.QSFP_PORT_END -= 1
