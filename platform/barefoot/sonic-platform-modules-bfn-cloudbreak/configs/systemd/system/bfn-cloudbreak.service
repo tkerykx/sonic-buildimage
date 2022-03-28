@@ -1,5 +1,5 @@
 [Unit]
-Description=Barefoot Newport FPGA driver
+Description=Barefoot CloudBreak FPGA driver
 Before=syncd.service
 
 [Service]
