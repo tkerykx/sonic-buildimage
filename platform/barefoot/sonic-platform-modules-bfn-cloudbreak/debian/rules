@@ -10,7 +10,7 @@ SCRIPT_SRC := $(shell pwd)/scripts
 CONFIGS_SRC := $(shell pwd)/configs
 BUILD_DIR := $(shell pwd)/build
 WHEEL_BUILD_DIR := $(BUILD_DIR)/wheel
-MODULE_NAMES := davenport stinson
+MODULE_NAMES := davenport
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
