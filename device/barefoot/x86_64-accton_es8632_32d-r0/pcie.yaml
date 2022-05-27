@@ -77,6 +77,12 @@
   name: 'PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express
     Root Port #1 (rev d5)'
 - bus: '00'
+  dev: 1c
+  fn: '7'
+  id: 8c1e
+  name: 'PCI bridge: Intel Corporation 8 Series/C220 Series Chipset Family PCI Express
+    Root Port #8 (rev d5)'
+- bus: '00'
   dev: 1d
   fn: '0'
   id: 8c26
@@ -100,12 +106,6 @@
   id: 8c22
   name: 'SMBus: Intel Corporation 8 Series/C220 Series Chipset Family SMBus Controller
     (rev 05)'
-- bus: '02'
-  dev: '00'
-  fn: '0'
-  id: '1533'
-  name: 'Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev
-    03)'
 - bus: '03'
   dev: '00'
   fn: '0'
@@ -143,13 +143,19 @@
 - bus: '06'
   dev: '00'
   fn: '0'
-  id: '0100'
-  name: 'Ethernet controller: Device 1d1c:0100'
+  id: 0da2
+  name: 'Ethernet controller: Intel Corporation Device 0da2'
 - bus: '07'
   dev: '00'
   fn: '0'
-  id: 01f0
-  name: 'Memory controller: Device 1d1c:01f0'
+  id: 01f1
+  name: 'Memory controller: Device 1d1c:01f1'
+- bus: 08
+  dev: '00'
+  fn: '0'
+  id: '1533'
+  name: 'Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev
+    03)'
 - bus: ff
   dev: 0b
   fn: '0'
