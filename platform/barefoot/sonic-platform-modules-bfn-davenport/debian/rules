@@ -10,7 +10,7 @@ SCRIPT_SRC := $(shell pwd)/scripts
 CONFIGS_SRC := $(shell pwd)/configs
 BUILD_DIR := $(shell pwd)/build
 WHEEL_BUILD_DIR := $(BUILD_DIR)/wheel
-MODULE_NAMES := es8632
+MODULE_NAMES := as9526bf
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
@@ -29,8 +29,8 @@ override_dh_auto_install:
 		cp -r $(SCRIPT_SRC)/* debian/$(PACKAGE_PRE_NAME)-$${mod}/usr/local/bin; \
 		dh_installdirs -p$(PACKAGE_PRE_NAME)-$${mod} etc/network/interfaces.d/; \
 		cp -r $(CONFIGS_SRC)/network/interfaces.d/* debian/$(PACKAGE_PRE_NAME)-$${mod}/etc/network/interfaces.d/; \
-		dh_installdirs -p$(PACKAGE_PRE_NAME)-$${mod} usr/share/sonic/device/x86_64-accton_$${mod}_32d-r0/; \
-		cp -r $(WHEEL_BUILD_DIR)/*  debian/$(PACKAGE_PRE_NAME)-$${mod}/usr/share/sonic/device/x86_64-accton_$${mod}_32d-r0/; \
+		dh_installdirs -p$(PACKAGE_PRE_NAME)-$${mod} usr/share/sonic/device/x86_64-accton_$${mod}_32do-r0/; \
+		cp -r $(WHEEL_BUILD_DIR)/*  debian/$(PACKAGE_PRE_NAME)-$${mod}/usr/share/sonic/device/x86_64-accton_$${mod}_32do-r0/; \
 	done)
 
 override_dh_usrlocal:
