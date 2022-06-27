@@ -878,7 +878,7 @@ static int bf_tof3_register_device(struct device *parent,
      physical Tofino(3) device. We have not figured that out yet.
      until then, we support only one CB device per host CPU */
   bf_addr = (u32 *)((u8 *)bf_base_addr + TOFINO3_MISC_PAD_STATUS_OFFSET);
-#if 1 /* USING EMULATOR where subdevice info is not possible to have */
+#if 0 /* USING EMULATOR where subdevice info is not possible to have */
   bf_multisub_tof_unused_devid_get(); /* keep compiler happy */
   subdev_id = 0;
   if (bf_get_next_minor_no(&minor)) {
@@ -896,6 +896,7 @@ static int bf_tof3_register_device(struct device *parent,
     bf_tof3_info[dev_id].dev_id = dev_id; /* back reference */
     (bf_tof3_info[dev_id].minor)[subdev_id] = minor;
   } else {
+    subdev_id = 1;
     dev_id = 0; /* TBD : for Tofino with multi sub devices */
     (bf_tof3_info[dev_id].minor)[subdev_id] = minor;
   }
@@ -1036,10 +1037,10 @@ int bf_register_device(struct device *parent, struct bf_pci_dev *bfdev) {
  * sub devices using the minor number are unregistered */
 static int bf_tof3_unregister_device(struct bf_pci_dev *bfdev) {
   struct bf_dev_info *info = &bfdev->info;
-#if 1 //HACK until emulator implements efuse
+#if 0 //HACK until emulator implements efuse
   bf_return_minor_no(info->minor);
 #else
-  int j, dev_id, subdev_id, found;
+  int dev_id, subdev_id;
 
   if (!info->tof3_info) {
     printk(KERN_ERR "BF TOF3 bad info in tof3_unregister_device\n");
