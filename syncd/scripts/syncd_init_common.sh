@@ -240,7 +240,7 @@ config_syncd_barefoot()
     fi
     CMD_ARGS+=" -l -p $PROFILE_FILE"
 
-    # Check if SDE profile exist
+    # Check if SDE profile configured
     P4_PROFILE=$(sonic-cfggen -d -v 'DEVICE_METADATA["localhost"]["p4_profile"]')
     if [[ -n "$P4_PROFILE" ]]; then
         if [[ ( -d /opt/bfn/install_${P4_PROFILE} ) && ( -L /opt/bfn/install || ! -e /opt/bfn/install ) ]]; then
@@ -248,15 +248,14 @@ config_syncd_barefoot()
             P4_PROFILE_EXIST="true"
         fi
     fi
-    
-    # Check if current default profile fits the ASIC family
-    Check if current default profile fits the ASIC family
+    # Validate SDE profile
     if [[ x"$P4_PROFILE_EXIST" != x"true" ]]; then
         CHIP_FAMILY="$(cat $HWSKU_DIR/switch-tna-sai.conf | grep chip_family | awk '{print substr ($2,2,length($2)-3)}')"
         P4_PTYPE="y"
         if [[ "$CHIP_FAMILY" == "tofino" ]]; then
             P4_PTYPE="x"
         fi
+        # Check if the current profile fits the ASIC family
         PROFILE_DEFAULT=$(readlink /opt/bfn/install)
         if [[ "$PROFILE_DEFAULT" == "install_$P4_PTYPE"*"_profile" ||  $PROFILE_DEFAULT == *"_$CHIP_FAMILY"  ]]; then
             echo "/opt/bfn/install is a link to $P4_PTYPE $CHIP_FAMILY profile"
