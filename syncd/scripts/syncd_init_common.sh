@@ -245,29 +245,19 @@ config_syncd_barefoot()
     if [[ -n "$P4_PROFILE" ]]; then
         if [[ ( -d /opt/bfn/install_${P4_PROFILE} ) && ( -L /opt/bfn/install || ! -e /opt/bfn/install ) ]]; then
             ln -srfn /opt/bfn/install_${P4_PROFILE} /opt/bfn/install
-            P4_PROFILE_EXIST="true"
         fi
-    fi
     # Validate SDE profile
-    if [[ x"$P4_PROFILE_EXIST" != x"true" ]]; then
+    else
         CHIP_FAMILY="$(cat $HWSKU_DIR/switch-tna-sai.conf | grep chip_family | awk '{print substr ($2,2,length($2)-3)}')"
-        P4_PTYPE="y"
-        if [[ "$CHIP_FAMILY" == "tofino" ]]; then
-            P4_PTYPE="x"
-        fi
+        shopt -s nocasematch
+        [[ "$CHIP_FAMILY" == "tofino" ]] && P4_PTYPE="x" || P4_PTYPE="y"
         # Check if the current profile fits the ASIC family
         PROFILE_DEFAULT=$(readlink /opt/bfn/install)
-        if [[ "$PROFILE_DEFAULT" == "install_$P4_PTYPE"*"_profile" ||  $PROFILE_DEFAULT == *"_$CHIP_FAMILY"  ]]; then
-            echo "/opt/bfn/install is a link to $P4_PTYPE $CHIP_FAMILY profile"
-        else
+        if [[ "$PROFILE_DEFAULT" != "install_$P4_PTYPE"*"_profile" ||  $PROFILE_DEFAULT != *"_$CHIP_FAMILY"  ]]; then
             # Looking for what profile is suitable for ASIC family
-            PROFILE=$(ls -d /opt/bfn/install_$P4_PTYPE*_profile -d  /opt/bfn/install_$P4_PTYPE*_$CHIP_FAMILY 2> /dev/null | head -1)
+            PROFILE=$(ls -d /opt/bfn/install_$P4_PTYPE*_profile -d  /opt/bfn/install_*_$CHIP_FAMILY 2> /dev/null | head -1)
             if [[ ! -z $PROFILE  ]]; then
-                echo "P4 profile $P4_PTYPE found for $CHIP_FAMILY"
-                echo "Link /opt/bfn/install to $PROFILE"
                 ln -srfn $PROFILE /opt/bfn/install
-            else
-                echo "No P4 profile found for $CHIP_FAMILY"
             fi
         fi
     fi
