@@ -229,32 +229,6 @@ config_syncd_marvell()
     [ -e /dev/net/tun ] || ( mkdir -p /dev/net && mknod /dev/net/tun c 10 200 )
 }
 
-function config_syncd_barefoot_profile()
-{
-    CHIP_FAMILY="$(cat $HWSKU_DIR/switch-tna-sai.conf | grep chip_family | awk '{print substr ($2,2,length($2)-3)}')"
-    P4_PNAME=$(sonic-cfggen -d -v 'DEVICE_METADATA["localhost"]["p4_profile"]')
-    echo $P4_PNAME
-    P4_PTYPE="y"
-    if [[ "$P4_PNAME" == "tofino" ]]; then
-        P4_PTYPE="x"
-    fi
-    if [[ -n "$P4_PROFILE" || ( ! -L /opt/bfn/install && -e /opt/bfn/install ) ]]; then
-        return
-    fi
-    PROFILE_DEFAULT=$(readlink /opt/bfn/install)
-    if [[ "$PROFILE_DEFAULT" == "install_$P4_PTYPE"*"_profile" ||  $PROFILE_DEFAULT == *"_$CHIP_FAMILY"  ]]; then
-        echo "/opt/bfn/install is a link to $P4_PTYPE $P4_PNAME profile"
-        return
-    fi
-    PROFILE=$(ls -d /opt/bfn/install_$P4_PTYPE*_profile -d  /opt/bfn/install_$P4_PTYPE*_$CHIP_FAMILY 2> /dev/null | head -1)
-    if [[ -z $PROFILE  ]]; then
-        echo "No P4 profile found for $P4_PNAME"
-        return
-    fi
-    echo "Link /opt/bfn/install to $PROFILE"
-    ln -srfn $PROFILE /opt/bfn/install
-}
-
 config_syncd_barefoot()
 {
     PROFILE_FILE="$HWSKU_DIR/sai.profile"
@@ -266,8 +240,38 @@ config_syncd_barefoot()
     fi
     CMD_ARGS+=" -l -p $PROFILE_FILE"
 
-    # Check and load SDE profile
-    config_syncd_barefoot_profile
+    # Check if SDE profile exist
+    P4_PROFILE=$(sonic-cfggen -d -v 'DEVICE_METADATA["localhost"]["p4_profile"]')
+    if [[ -n "$P4_PROFILE" ]]; then
+        if [[ ( -d /opt/bfn/install_${P4_PROFILE} ) && ( -L /opt/bfn/install || ! -e /opt/bfn/install ) ]]; then
+            ln -srfn /opt/bfn/install_${P4_PROFILE} /opt/bfn/install
+            P4_PROFILE_EXIST="true"
+        fi
+    fi
+    
+    # Check if current default profile fits the ASIC family
+    Check if current default profile fits the ASIC family
+    if [[ x"$P4_PROFILE_EXIST" != x"true" ]]; then
+        CHIP_FAMILY="$(cat $HWSKU_DIR/switch-tna-sai.conf | grep chip_family | awk '{print substr ($2,2,length($2)-3)}')"
+        P4_PTYPE="y"
+        if [[ "$CHIP_FAMILY" == "tofino" ]]; then
+            P4_PTYPE="x"
+        fi
+        PROFILE_DEFAULT=$(readlink /opt/bfn/install)
+        if [[ "$PROFILE_DEFAULT" == "install_$P4_PTYPE"*"_profile" ||  $PROFILE_DEFAULT == *"_$CHIP_FAMILY"  ]]; then
+            echo "/opt/bfn/install is a link to $P4_PTYPE $CHIP_FAMILY profile"
+        else
+            # Looking for what profile is suitable for ASIC family
+            PROFILE=$(ls -d /opt/bfn/install_$P4_PTYPE*_profile -d  /opt/bfn/install_$P4_PTYPE*_$CHIP_FAMILY 2> /dev/null | head -1)
+            if [[ ! -z $PROFILE  ]]; then
+                echo "P4 profile $P4_PTYPE found for $CHIP_FAMILY"
+                echo "Link /opt/bfn/install to $PROFILE"
+                ln -srfn $PROFILE /opt/bfn/install
+            else
+                echo "No P4 profile found for $CHIP_FAMILY"
+            fi
+        fi
+    fi
     export PYTHONHOME=/opt/bfn/install/
     export PYTHONPATH=/opt/bfn/install/
     export ONIE_PLATFORM=`grep onie_platform /etc/machine.conf | awk 'BEGIN { FS = "=" } ; { print $2 }'`
