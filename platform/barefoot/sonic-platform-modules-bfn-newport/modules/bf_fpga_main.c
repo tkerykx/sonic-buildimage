@@ -184,7 +184,11 @@ static inline struct bf_pci_dev *bf_get_pci_dev(struct bf_dev_info *info) {
  * It masks the msix on/off of generating MSI-X messages.
  */
 static void bf_msix_mask_irq(struct msi_desc *desc, int32_t state) {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 15, 0)
   u32 mask_bits = desc->masked;
+#else
+  u32 mask_bits = desc->msix_ctrl;
+#endif
   unsigned offset = desc->msi_attrib.entry_nr * PCI_MSIX_ENTRY_SIZE +
                     PCI_MSIX_ENTRY_VECTOR_CTRL;
 
@@ -193,12 +197,19 @@ static void bf_msix_mask_irq(struct msi_desc *desc, int32_t state) {
   } else {
     mask_bits |= PCI_MSIX_ENTRY_CTRL_MASKBIT;
   }
-
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 15, 0)
   if (mask_bits != desc->masked) {
     writel(mask_bits, desc->mask_base + offset);
     readl(desc->mask_base);
     desc->masked = mask_bits;
   }
+#else
+  if (mask_bits != desc->msix_ctrl) {
+    writel(mask_bits, desc->mask_base + offset);
+    readl(desc->mask_base);
+    desc->msix_ctrl = mask_bits;
+  }
+#endif
 }
 
 /**
