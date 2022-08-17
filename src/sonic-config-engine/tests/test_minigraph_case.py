@@ -236,14 +236,6 @@ class TestCfgGenCaseInsensitive(TestCase):
                 'lo_addr_v6': '::/0',
                 'mgmt_addr': '0.0.0.0/0',
                 'type': 'SmartCable'
-            },
-            'server2-SC': {
-                'hwsku': 'smartcable-sku',
-                'lo_addr': '10.10.10.3/32',
-                'lo_addr_v6': '::/0',
-                'mgmt_addr': '0.0.0.0/0',
-                'type': 'SmartCable',
-                'subtype': 'active-active'
             }
         }
         output = self.run_script(argument)
@@ -390,7 +382,7 @@ class TestCfgGenCaseInsensitive(TestCase):
                 "tunnel_type": "IPINIP",
                 "src_ip": "25.1.1.10",
                 "dst_ip": "10.1.0.32",
-                "dscp_mode": "uniform",
+                "dscp_mode": "pipe",
                 "encap_ecn_mode": "standard",
                 "ecn_mode": "copy_from_outer",
                 "ttl_mode": "pipe",
@@ -407,6 +399,14 @@ class TestCfgGenCaseInsensitive(TestCase):
             expected_tunnel
         )
 
+        # Validate extra config for mux tunnel is generated automatically when tunnel_qos_remap = enabled
+        sample_graph_enabled_remap = os.path.join(self.test_dir, 'simple-sample-graph-case-remap-enabled-no-tunnel-attributes.xml')
+        argument = '-m "' + sample_graph_enabled_remap + '" -p "' + self.port_config + '" -v "TUNNEL"'
+        output = self.run_script(argument)
+        self.assertEqual(
+            utils.to_dict(output.strip()),
+            expected_tunnel
+        )
 
     def test_minigraph_mux_cable_table(self):
         argument = '-m "' + self.sample_graph + '" -p "' + self.port_config + '" -v "MUX_CABLE"'
@@ -421,6 +421,7 @@ class TestCfgGenCaseInsensitive(TestCase):
                 'server_ipv4': '10.10.10.2/32',
                 'server_ipv6': 'fe80::2/128',
                 'soc_ipv4': '10.10.10.3/32',
+                'soc_ipv6': 'fe80::3/128',
                 'cable_type': 'active-active'
             }
         }

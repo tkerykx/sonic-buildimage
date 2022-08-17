@@ -262,6 +262,23 @@ module sonic-types {
         }
     }
 
+    typedef vnid_type {
+        type uint32 {
+             range "1..16777215";
+        }
+        description
+            "VXLAN Network Identifier";
+    }
+
+    typedef tc_type {
+        type uint8 {
+            range "0..15" {
+                error-message "Invalid Traffic Class";
+                error-app-tag tc-invalid;
+            }
+        }
+    }
+
     {% if yang_model_type == "cvl" %}
     /* Required for CVL */
     container operation {
