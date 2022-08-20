@@ -201,6 +201,24 @@ class Psu(PsuBase):
         """
         return self.__index
 
+    def get_temperature(self):
+        """
+        Retrieves current temperature reading from PSU
+        Returns:
+            A float number of current temperature in Celsius up to nearest thousandth
+            of one degree Celsius, e.g. 30.125
+        """
+        return self.get_thermal(0).get_temperature()
+
+    def get_temperature_high_threshold(self):
+        """
+        Retrieves the high threshold temperature of PSU
+        Returns:
+            A float number, the high threshold temperature of PSU in Celsius
+            up to nearest thousandth of one degree Celsius, e.g. 30.125
+        """
+        return self.get_thermal(0).get_high_threshold()
+
     @property
     def _thermal_list(self):
         if self.__thermals is None:
