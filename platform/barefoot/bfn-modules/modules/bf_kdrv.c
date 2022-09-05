@@ -904,6 +904,9 @@ static int bf_tof3_register_device(struct device *parent,
   /* we cannot assume the order in which sub devices are probed */
   if (subdev_id == 0) {
     dev_id = bf_multisub_tof_unused_devid_get();
+    if (dev_id < 0) {
+      return -EINVAL;
+    }
     bf_tof3_info[dev_id].dev_id = dev_id; /* back reference */
     (bf_tof3_info[dev_id].minor)[subdev_id] = minor;
   } else {
