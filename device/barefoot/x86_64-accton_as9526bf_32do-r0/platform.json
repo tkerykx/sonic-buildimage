@@ -1,6 +1,6 @@
 {
     "chassis": {
-        "name": "Newport",
+        "name": "Davenport",
         "components": [
             {
                 "name": "BIOS"
@@ -9,123 +9,53 @@
                 "name": "BMC"
             }
         ],
-        "thermal_manager": false,
         "fans": [
             {
-                "name": "counter-rotating-fan-1",
-                "status_led": {
-                    "controllable": false
-                },
-                "speed": {
-                    "controllable": false
-                }
+                "name": "counter-rotating-fan-1"
             },
             {
-                "name": "counter-rotating-fan-2",
-                "status_led": {
-                    "controllable": false
-                },
-                "speed": {
-                    "controllable": false
-                }
+                "name": "counter-rotating-fan-2"
             },
             {
-                "name": "counter-rotating-fan-3",
-                "status_led": {
-                    "controllable": false
-                },
-                "speed": {
-                    "controllable": false
-                }
+                "name": "counter-rotating-fan-3"
             },
             {
-                "name": "counter-rotating-fan-4",
-                "status_led": {
-                    "controllable": false
-                },
-                "speed": {
-                    "controllable": false
-                }
+                "name": "counter-rotating-fan-4"
             },
             {
-                "name": "counter-rotating-fan-5",
-                "status_led": {
-                    "controllable": false
-                },
-                "speed": {
-                    "controllable": false
-                }
+                "name": "counter-rotating-fan-5"
             },
             {
-                "name": "counter-rotating-fan-6",
-                "status_led": {
-                    "controllable": false
-                },
-                "speed": {
-                    "controllable": false
-                }
+                "name": "counter-rotating-fan-6"
+            },
+            {
+                "name": "counter-rotating-fan-7"
             }
         ],
         "fan_drawers": [
             {
                 "name": "fantray-1",
-                "status_led": {
-                    "controllable": false
-                },
                 "fans": [
                     {
-                        "name": "counter-rotating-fan-1",
-                        "status_led": {
-                            "controllable": false
-                        },
-                        "speed": {
-                            "controllable": false
-                        }
+                        "name": "counter-rotating-fan-1"
                     },
                     {
-                        "name": "counter-rotating-fan-2",
-                        "status_led": {
-                            "controllable": false
-                        },
-                        "speed": {
-                            "controllable": false
-                        }
+                        "name": "counter-rotating-fan-2"
                     },
                     {
-                        "name": "counter-rotating-fan-3",
-                        "status_led": {
-                            "controllable": false
-                        },
-                        "speed": {
-                            "controllable": false
-                        }
+                        "name": "counter-rotating-fan-3"
                     },
                     {
-                        "name": "counter-rotating-fan-4",
-                        "status_led": {
-                            "controllable": false
-                        },
-                        "speed": {
-                            "controllable": false
-                        }
+                        "name": "counter-rotating-fan-4"
                     },
                     {
-                        "name": "counter-rotating-fan-5",
-                        "status_led": {
-                            "controllable": false
-                        },
-                        "speed": {
-                            "controllable": false
-                        }
+                        "name": "counter-rotating-fan-5"
                     },
                     {
-                        "name": "counter-rotating-fan-6",
-                        "status_led": {
-                            "controllable": false
-                        },
-                        "speed": {
-                            "controllable": false
-                        }
+                        "name": "counter-rotating-fan-6"
+                    },
+                    {
+                        "name": "counter-rotating-fan-7"
                     }
                 ]
             }
@@ -446,13 +376,12 @@
             }
         },
         "Ethernet96": {
-            "index": "13,13,13,13,13,13,13,13",
+            "index": "14,14,14,14,14,14,14,14",
             "lanes": "96,97,98,99,100,101,102,103",
             "breakout_modes": {
                 "1x400G[200G]": ["Ethernet96"],
                 "2x200G[100G,40G]": ["Ethernet96", "Ethernet100"],
                 "4x100G[50G]": ["Ethernet96", "Ethernet98", "Ethernet100", "Ethernet102"],
-                "8x50G[25G,10G]": ["Ethernet96", "Ethernet97", "Ethernet98", "Ethernet99", "Ethernet100", "Ethernet101", "Ethernet102", "Ethernet103"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet96", "Ethernet100", "Ethernet101", "Ethernet102", "Ethernet103"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet96", "Ethernet97", "Ethernet98", "Ethernet99", "Ethernet100"]
             }
@@ -464,19 +393,17 @@
                 "1x400G[200G]": ["Ethernet104"],
                 "2x200G[100G,40G]": ["Ethernet104", "Ethernet108"],
                 "4x100G[50G]": ["Ethernet104", "Ethernet106", "Ethernet108", "Ethernet110"],
-                "8x50G[25G,10G]": ["Ethernet104", "Ethernet105", "Ethernet106", "Ethernet107", "Ethernet108", "Ethernet109", "Ethernet110", "Ethernet111"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet104", "Ethernet108", "Ethernet109", "Ethernet110", "Ethernet111"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet104", "Ethernet105", "Ethernet106", "Ethernet107", "Ethernet108"]
             }
         },
         "Ethernet112": {
-            "index": "15,15,15,15,15,15,15,15",
+            "index": "16,16,16,16,16,16,16,16",
             "lanes": "112,113,114,115,116,117,118,119",
             "breakout_modes": {
                 "1x400G[200G]": ["Ethernet112"],
                 "2x200G[100G,40G]": ["Ethernet112", "Ethernet116"],
                 "4x100G[50G]": ["Ethernet112", "Ethernet114", "Ethernet116", "Ethernet118"],
-                "8x50G[25G,10G]": ["Ethernet112", "Ethernet113", "Ethernet114", "Ethernet115", "Ethernet116", "Ethernet117", "Ethernet118", "Ethernet119"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet112", "Ethernet116", "Ethernet117", "Ethernet118", "Ethernet119"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet112", "Ethernet113", "Ethernet114", "Ethernet115", "Ethernet116"]
             }
@@ -488,19 +415,17 @@
                 "1x400G[200G]": ["Ethernet120"],
                 "2x200G[100G,40G]": ["Ethernet120", "Ethernet124"],
                 "4x100G[50G]": ["Ethernet120", "Ethernet122", "Ethernet124", "Ethernet126"],
-                "8x50G[25G,10G]": ["Ethernet120", "Ethernet121", "Ethernet122", "Ethernet123", "Ethernet124", "Ethernet125", "Ethernet126", "Ethernet127"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet120", "Ethernet124", "Ethernet125", "Ethernet126", "Ethernet127"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet120", "Ethernet121", "Ethernet122", "Ethernet123", "Ethernet124"]
             }
         },
         "Ethernet128": {
-            "index": "17,17,17,17,17,17,17,17",
+            "index": "18,18,18,18,18,18,18,18",
             "lanes": "128,129,130,131,132,133,134,135",
             "breakout_modes": {
                 "1x400G[200G]": ["Ethernet128"],
                 "2x200G[100G,40G]": ["Ethernet128", "Ethernet132"],
                 "4x100G[50G]": ["Ethernet128", "Ethernet130", "Ethernet132", "Ethernet134"],
-                "8x50G[25G,10G]": ["Ethernet128", "Ethernet129", "Ethernet130", "Ethernet131", "Ethernet132", "Ethernet133", "Ethernet134", "Ethernet135"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet128", "Ethernet132", "Ethernet133", "Ethernet134", "Ethernet135"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet128", "Ethernet129", "Ethernet130", "Ethernet131", "Ethernet132"]
             }
@@ -512,19 +437,17 @@
                 "1x400G[200G]": ["Ethernet136"],
                 "2x200G[100G,40G]": ["Ethernet136", "Ethernet140"],
                 "4x100G[50G]": ["Ethernet136", "Ethernet138", "Ethernet140", "Ethernet142"],
-                "8x50G[25G,10G]": ["Ethernet136", "Ethernet137", "Ethernet138", "Ethernet139", "Ethernet140", "Ethernet141", "Ethernet142", "Ethernet143"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet136", "Ethernet140", "Ethernet141", "Ethernet142", "Ethernet143"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet136", "Ethernet137", "Ethernet138", "Ethernet139", "Ethernet140"]
             }
         },
         "Ethernet144": {
-            "index": "19,19,19,19,19,19,19,19",
+            "index": "20,20,20,20,20,20,20,20",
             "lanes": "144,145,146,147,148,149,150,151",
             "breakout_modes": {
                 "1x400G[200G]": ["Ethernet144"],
                 "2x200G[100G,40G]": ["Ethernet144", "Ethernet148"],
                 "4x100G[50G]": ["Ethernet144", "Ethernet146", "Ethernet148", "Ethernet150"],
-                "8x50G[25G,10G]": ["Ethernet144", "Ethernet145", "Ethernet146", "Ethernet147", "Ethernet148", "Ethernet149", "Ethernet150", "Ethernet151"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet144", "Ethernet148", "Ethernet149", "Ethernet150", "Ethernet151"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet144", "Ethernet145", "Ethernet146", "Ethernet147", "Ethernet148"]
             }
@@ -536,7 +459,6 @@
                 "1x400G[200G]": ["Ethernet152"],
                 "2x200G[100G,40G]": ["Ethernet152", "Ethernet156"],
                 "4x100G[50G]": ["Ethernet152", "Ethernet154", "Ethernet156", "Ethernet158"],
-                "8x50G[25G,10G]": ["Ethernet152", "Ethernet153", "Ethernet154", "Ethernet155", "Ethernet156", "Ethernet157", "Ethernet158", "Ethernet159"],
                 "1x200G[100G,40G](4)+4x50G[25G,10G](4)": ["Ethernet152", "Ethernet156", "Ethernet157", "Ethernet158", "Ethernet159"],
                 "4x50G[25G,10G](4)+1x200G[100G,40G](4)": ["Ethernet152", "Ethernet153", "Ethernet154", "Ethernet155", "Ethernet156"]
             }
