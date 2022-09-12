@@ -12,7 +12,7 @@ try:
     from sonic_platform.sfp import Sfp
     from sonic_platform.psu import psu_list_get
     from sonic_platform.fan_drawer import fan_drawer_list_get
-    from sonic_platform.thermal import chassis_thermals_list_get
+    from sonic_platform.thermal import thermal_list_get
     from eeprom import Eeprom
     from platform_utils import file_create
 
@@ -92,7 +92,7 @@ class Chassis(ChassisBase):
     @property
     def _thermal_list(self):
         if self.__thermals is None:
-            self.__thermals = chassis_thermals_list_get()
+            self.__thermals = thermal_list_get()
         return self.__thermals
 
     @_thermal_list.setter
