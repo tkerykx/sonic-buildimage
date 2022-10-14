@@ -24,14 +24,44 @@
     Express Root Port 2 (rev 03)'
 - bus: '00'
   dev: '02'
+  fn: '1'
+  id: 6f05
+  name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
+    Express Root Port 2 (rev 03)'
+- bus: '00'
+  dev: '02'
   fn: '2'
   id: 6f06
+  name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
+    Express Root Port 2 (rev 03)'
+- bus: '00'
+  dev: '02'
+  fn: '3'
+  id: 6f07
   name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
     Express Root Port 2 (rev 03)'
 - bus: '00'
   dev: '03'
   fn: '0'
   id: 6f08
+  name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
+    Express Root Port 3 (rev 03)'
+- bus: '00'
+  dev: '03'
+  fn: '1'
+  id: 6f09
+  name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
+    Express Root Port 3 (rev 03)'
+- bus: '00'
+  dev: '03'
+  fn: '2'
+  id: 6f0a
+  name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
+    Express Root Port 3 (rev 03)'
+- bus: '00'
+  dev: '03'
+  fn: '3'
+  id: 6f0b
   name: 'PCI bridge: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D PCI
     Express Root Port 3 (rev 03)'
 - bus: '00'
@@ -96,16 +126,16 @@
     SKU LPC Controller (rev 05)'
 - bus: '00'
   dev: 1f
-  fn: '2'
-  id: 8c02
-  name: 'SATA controller: Intel Corporation 8 Series/C220 Series Chipset Family 6-port
-    SATA Controller 1 [AHCI mode] (rev 05)'
-- bus: '00'
-  dev: 1f
   fn: '3'
   id: 8c22
   name: 'SMBus: Intel Corporation 8 Series/C220 Series Chipset Family SMBus Controller
     (rev 05)'
+- bus: '01'
+  dev: '00'
+  fn: '0'
+  id: '5012'
+  name: 'Non-Volatile memory controller: Phison Electronics Corporation E12 NVMe Controller
+    (rev 01)'
 - bus: '03'
   dev: '00'
   fn: '0'
@@ -130,27 +160,32 @@
   id: 6f53
   name: 'System peripheral: Intel Corporation Xeon Processor D Family QuickData Technology
     Register DMA Channel 3'
-- bus: '04'
+- bus: '05'
   dev: '00'
   fn: '0'
   id: 15ab
   name: 'Ethernet controller: Intel Corporation Ethernet Connection X552 10 GbE Backplane'
-- bus: '04'
+- bus: '05'
   dev: '00'
   fn: '1'
   id: 15ab
   name: 'Ethernet controller: Intel Corporation Ethernet Connection X552 10 GbE Backplane'
-- bus: '06'
+- bus: 08
   dev: '00'
   fn: '0'
   id: 0da2
-  name: 'Ethernet controller: Intel Corporation Device 0da2'
-- bus: '07'
+  name: 'Ethernet controller: Intel Corporation Device 0da2 (rev ff)'
+- bus: 09
+  dev: '00'
+  fn: '0'
+  id: 0da2
+  name: 'Ethernet controller: Intel Corporation Device 0da2 (rev ff)'
+- bus: 0c
   dev: '00'
   fn: '0'
   id: 01f1
   name: 'Memory controller: Device 1d1c:01f1'
-- bus: 08
+- bus: 0d
   dev: '00'
   fn: '0'
   id: '1533'
