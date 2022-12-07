@@ -28,6 +28,7 @@ Table of Contents
          * [DSCP_TO_TC_MAP](#dscp_to_tc_map)  
          * [FLEX_COUNTER_TABLE](#flex_counter_table)  
          * [KDUMP](#kdump)  
+         * [Kubernetes Master](#kubernetes-master)  
          * [L2 Neighbors](#l2-neighbors)  
          * [Loopback Interface](#loopback-interface)  
          * [LOSSLESS_TRAFFIC_PATTERN](#LOSSLESS_TRAFFIC_PATTERN)  
@@ -46,6 +47,7 @@ Table of Contents
          * [Scheduler](#scheduler)  
          * [Port QoS Map](#port-qos-map)  
          * [Queue](#queue)  
+         * [Restapi](#restapi)  
          * [Tacplus Server](#tacplus-server)    
          * [TC to Priority group map](#tc-to-priority-group-map)  
          * [TC to Queue map](#tc-to-queue-map)    
@@ -56,6 +58,7 @@ Table of Contents
          * [VOQ Inband Interface](#voq-inband-interface) 
          * [VXLAN](#vxlan)   
          * [Virtual router](#virtual-router)  
+         * [LOGGER](#logger)           
          * [WRED_PROFILE](#wred_profile)  
          * [PASSWORD_HARDENING](#password_hardening)  
          * [SYSTEM_DEFAULTS table](#systemdefaults-table)
@@ -829,7 +832,8 @@ instance is supported in SONiC.
         "deployment_id": "1",
         "type": "ToRRouter",
         "bgp_adv_lo_prefix_as_128" : "true",
-        "buffer_model": "traditional"
+        "buffer_model": "traditional",
+        "yang_config_validation": "disable"
     }
   }
 }
@@ -931,6 +935,27 @@ instance is supported in SONiC.
             "memory": "0M-2G:256M,2G-4G:256M,4G-8G:384M,8G-:448M"
          }
      }
+}
+
+```
+
+### Kubernetes Master
+
+Kubernetes Master related configurations are stored in
+**KUBERNETES_MASTER** table. These configurations are used mainly
+for CTRMGR service. CTRMGR service will interactive with
+kubernetes master according to these configurations.
+
+```
+{
+    "KUBERNETES_MASTER": {
+        "SERVER": {
+            "disable": "False",
+            "insecure": "True",
+            "ip": "k8s.apiserver.com",
+            "port": "6443"
+        }
+    }
 }
 
 ```
@@ -1412,6 +1437,23 @@ name as object key and member list as attribute.
 }
 ```
 
+### Restapi
+```
+{
+"RESTAPI": {
+    "certs": {
+        "ca_crt": "/etc/sonic/credentials/ame_root.pem",
+        "server_key": "/etc/sonic/credentials/restapiserver.key",
+        "server_crt": "/etc/sonic/credentials/restapiserver.crt",
+        "client_crt_cname": "client.sonic.net"
+    },
+    "config": {
+        "client_auth": "true",
+        "log_level": "trace",
+        "allow_insecure": "false"
+    }
+}
+```
 
 ### Tacplus Server
 
@@ -1664,6 +1706,34 @@ The packet action could be:
   }
 }
 ```
+
+### Logger
+
+In this table, the loglevel and logoutput of the components are defined. Each component
+will have the component name as its key; and LOGLEVEL and LOGOUTPUT as attributes.
+The LOGLEVEL attribute will define the verbosity of the component.
+The LOGOUTPUT attribute will define the file of printing the logs.
+
+```
+{
+    "LOGGER": {
+        "orchagent": {
+                "LOGLEVEL": "NOTICE",
+                "LOGOUTPUT": "SYSLOG"
+            },
+            "syncd": {
+                "LOGLEVEL": "DEBUG",
+                "LOGOUTPUT": "STDOUT"
+            },
+            "SAI_API_LAG": {
+                "LOGLEVEL": "ERROR",
+                "LOGOUTPUT": "STDERR"
+            }
+    }
+}
+
+```
+
 ### PASSWORD_HARDENING
 
 Password Hardening, a user password is the key credential used in order to verify the user accessing the switch and acts as the first line of defense in regards to securing the switch. PASSWORD_HARDENING - support the enforce strong policies.
