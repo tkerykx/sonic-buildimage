@@ -92,6 +92,9 @@ def fan_drawer_list_get():
     elif platform == "x86_64-accton_wedge100bf_65x-r0":
         max_fantray = 2
         max_fan = 5
+    elif platform == "x86_64-accton_as9526bf_32do-r0":
+        max_fantray = 1
+        max_fan = 6
     else:
         max_fantray = 1
         max_fan = 5
